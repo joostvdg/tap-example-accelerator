@@ -22,17 +22,17 @@ accelerator:
       defaultValue: Configurable Parameter 2
       dependsOn:
         name: secondConfigurableParameterCheckbox
-  engine:
-    merge:
-      - include: [ "README.md" ]
-        chain:
+engine:
+  merge:
+    - include: [ "README.md" ]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "CONFIGURABLE_PARAMETER_1"
+              with: "#firstConfigurableParameter.toLowerCase()"
+        - condition: "#secondConfigurableParameterCheckbox"
+          chain:
           - type: ReplaceText
             substitutions:
-              - text: "CONFIGURABLE_PARAMETER_1"
-                with: "#firstConfigurableParameter.toLowerCase()"
-          - condition: "#secondConfigurableParameterCheckbox"
-            chain:
-            - type: ReplaceText
-              substitutions:
-                - text: "CONFIGURABLE_PARAMETER_2"
-                  with: "#secondConfigurableParameter.toLowerCase()"
+              - text: "CONFIGURABLE_PARAMETER_2"
+                with: "#secondConfigurableParameter.toLowerCase()"
